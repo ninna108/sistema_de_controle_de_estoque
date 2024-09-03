@@ -1,0 +1,70 @@
+O Sistema de Controle de Estoque é uma aplicação para gerenciar de forma eficaz produtos, fornecedores e pedidos de reposição. Este sistema facilita a administração do estoque, mantendo registros precisos sobre os itens disponíveis, os fornecedores que fornecem esses itens e os pedidos de reposição realizados para manter o estoque adequado.
+
+Requisitos
+Banco de Dados:
+
+Nome do banco de dados: SistemaControleEstoque
+Tabelas:
+
+Fornecedores: Armazena informações sobre os fornecedores, incluindo o ID do fornecedor, nome, contato, telefone e email.
+Produtos: Armazena detalhes dos produtos, incluindo ID do produto, nome, descrição, preço, quantidade em estoque e o ID do fornecedor.
+PedidosReposicao: Registra os pedidos de reposição, incluindo o ID do pedido, ID do produto, quantidade solicitada e data do pedido.
+Operações:
+
+Inserção de Dados: Adiciona registros de fornecedores, produtos e pedidos de reposição.
+Consultas: Permite visualizar todos os produtos, pedidos de reposição e fornecedores. Inclui consultas com junções para combinar dados entre tabelas.
+Atualização de Dados: Atualiza a quantidade de produtos em estoque após o recebimento de um pedido de reposição e altera informações de fornecedores.
+Deleção de Dados: Remove produtos com estoque zerado e fornecedores descontinuados.
+# Sistema de Controle de Estoque
+
+## Descrição
+
+Este projeto visa desenvolver um banco de dados para o gerenciamento de estoque, incluindo produtos, fornecedores e pedidos de reposição. O sistema facilita a administração eficiente dos produtos em estoque, fornecedores e pedidos necessários para manter o estoque adequado.
+
+## Requisitos
+
+1. **Banco de Dados:**
+   - Nome: `SistemaControleEstoque`
+
+2. **Tabelas:**
+   - **Fornecedores:** Armazena dados dos fornecedores (id_fornecedor, nome, contato, telefone, email).
+   - **Produtos:** Armazena informações dos produtos (id_produto, nome, descrição, preco, quantidade_estoque, id_fornecedor).
+   - **PedidosReposicao:** Registra os pedidos de reposição (id_pedido, id_produto, quantidade, data_pedido).
+
+3. **Dados Iniciais:**
+   - Inclui dados de exemplo para fornecedores, produtos e pedidos de reposição.
+
+4. **Consultas e Relatórios:**
+   - Verificação de produtos em estoque.
+   - Detalhamento de pedidos de reposição feitos.
+   - Informações sobre fornecedores.
+
+5. **Atualização e Deleção:**
+   - Atualização da quantidade de produtos em estoque após reposição.
+   - Modificação de dados dos fornecedores.
+   - Exclusão de produtos descontinuados e fornecedores não ativos.
+
+6. **Funcionalidades Extras:**
+   - Listar produtos e seus fornecedores.
+
+## Scripts SQL
+
+O repositório contém scripts SQL completos para:
+1. Criação do banco de dados e tabelas.
+2. Inserção de dados iniciais.
+3. Realização de consultas e relatórios.
+4. Atualização e deleção de dados.
+
+## Instruções
+
+1. Execute os scripts SQL para criar o banco de dados e tabelas.
+2. Insira os dados iniciais conforme fornecido.
+3. Execute as consultas e atualizações conforme necessário.
+
+## Contribuições
+
+Contribuições são bem-vindas para melhorias ou correções. Sinta-se à vontade para enviar pull requests ou relatar problemas.
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
