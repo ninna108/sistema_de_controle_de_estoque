@@ -1,0 +1,62 @@
+SET SQL_SAFE_UPDATES = 0;
+DROP DATABASE IF EXISTS SistemaControleEstoque;
+CREATE DATABASE SistemaControleEstoque;
+USE SistemaControleEstoque;
+CREATE TABLE Fornecedores (
+    id_fornecedor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    contato VARCHAR(100),
+    telefone VARCHAR(20),
+    email VARCHAR(100)
+);
+CREATE TABLE Produtos (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10, 2) NOT NULL,
+    quantidade_estoque INT NOT NULL,
+    id_fornecedor INT,
+    FOREIGN KEY (id_fornecedor) REFERENCES Fornecedores(id_fornecedor)
+);
+CREATE TABLE PedidosReposicao (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT,
+    quantidade INT NOT NULL,
+    data_pedido DATE NOT NULL,
+    FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
+);
+INSERT INTO Fornecedores (nome, contato, telefone, email) VALUES
+('Fornecedor A', 'João Silva', '1234-5678', 'joao.silva@fornecedora.com'),
+('Fornecedor B', 'Maria Oliveira', '2345-6789', 'maria.oliveira@fornecedora.com'),
+('Fornecedor C', 'Carlos Santos', '3456-7890', 'carlos.santos@fornecedora.com');
+INSERT INTO Produtos (nome, descricao, preco, quantidade_estoque, id_fornecedor) VALUES
+('Produto X', 'Descrição do Produto X', 15.50, 100, 1),
+('Produto Y', 'Descrição do Produto Y', 25.75, 50, 2),
+('Produto Z', 'Descrição do Produto Z', 5.20, 200, 3);
+INSERT INTO PedidosReposicao (id_produto, quantidade, data_pedido) VALUES
+(1, 20, '2024-09-01'),
+(2, 10, '2024-09-02'),
+(3, 50, '2024-09-03');
+SELECT * FROM Produtos;
+SELECT id_pedido, nome AS nome_produto, preco, quantidade, data_pedido
+FROM PedidosReposicao pr
+JOIN Produtos p ON pr.id_produto = p.id_produto;
+SELECT * FROM Fornecedores;
+-- Supondo que o pedido de reposição com id_pedido = 1 foi recebido e deve atualizar o estoque do produto correspondente
+UPDATE Produtos
+SET quantidade_estoque = quantidade_estoque + (
+    SELECT quantidade FROM PedidosReposicao WHERE id_pedido = 1
+)
+WHERE id_produto = (
+    SELECT id_produto FROM PedidosReposicao WHERE id_pedido = 1
+);
+UPDATE Fornecedores
+SET telefone = '9876-5432'
+WHERE id_fornecedor = 1;
+DELETE FROM Produtos
+WHERE quantidade_estoque = 0;
+DELETE FROM Fornecedores
+WHERE id_fornecedor = 3;
+SELECT p.nome AS nome_produto, f.nome AS nome_fornecedor
+FROM Produtos p
+JOIN Fornecedores f ON p.id_fornecedor = f.id_fornecedor;
